@@ -1,23 +1,22 @@
-package com.example.androidart;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.androidart.singletask;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.androidart.singletask.STMainActivity;
+import com.example.androidart.BaseAppCompatActivity;
+import com.example.androidart.R;
 
-public class MainActivity extends AppCompatActivity {
+public class STMainActivity extends BaseAppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_stmain);
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), STMainActivity.class));
+                startActivity(new Intent(v.getContext(), SecondActivity.class));
             }
         });
     }

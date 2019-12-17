@@ -16,12 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <!--
+            singleTask launch mode
+        -->
+        <activity android:name=".singletask.STMainActivity" />
         <activity
-            android:name=".SecondActivity"
+            android:name=".singletask.SecondActivity"
             android:launchMode="singleTask"
             android:taskAffinity=":custom_task" />
         <activity
-            android:name=".ThirdActivity"
+            android:name=".singletask.ThirdActivity"
             android:launchMode="singleTask"
             android:taskAffinity=":custom_task" />
     </application>

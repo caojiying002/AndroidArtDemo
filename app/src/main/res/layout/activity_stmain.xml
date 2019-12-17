@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".singletask.SecondActivity">
+    tools:context=".singletask.STMainActivity">
 
     <Button
         android:id="@+id/button"
@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        android:text="Start ThirdActivity"
+        android:text="Start SecondActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
