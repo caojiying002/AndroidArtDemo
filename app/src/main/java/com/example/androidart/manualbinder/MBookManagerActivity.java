@@ -1,4 +1,4 @@
-package com.example.androidart.binder;
+package com.example.androidart.manualbinder;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -18,21 +18,21 @@ import com.example.androidart.TAGs;
 
 import java.util.List;
 
-public class BookManagerActivity extends BaseAppCompatActivity {
+public class MBookManagerActivity extends BaseAppCompatActivity {
 
-    @Nullable private IBookManager iBookManager;
+    @Nullable private MBookManager mBookManager;
     private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             Log.d(TAGs.TAG_BINDER, "onServiceConnected, threadName = " + Thread.currentThread().getName()
                     + ", IBinder service = " + service);
-            iBookManager = IBookManager.Stub.asInterface(service);
+            mBookManager = MBookManager.Stub.asInterface(service);
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
             Log.d(TAGs.TAG_BINDER, "onServiceDisconnected, threadName = " + Thread.currentThread().getName());
-            iBookManager = null;
+            mBookManager = null;
         }
     };
 
@@ -41,18 +41,18 @@ public class BookManagerActivity extends BaseAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_manager);
 
-        Intent intent = new Intent(this, BookManagerService.class);
+        Intent intent = new Intent(this, MBookManagerService.class);
         bindService(intent, mServiceConnection, BIND_AUTO_CREATE);
 
         findViewById(R.id.button_get).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (iBookManager != null) {
+                if (mBookManager != null) {
                     try {
                         // TODO 实际开发中可能阻塞主线程
-                        List<Book> list = iBookManager.getBookList();
+                        List<MBook> list = mBookManager.getBookList();
                         Log.d(TAGs.TAG_BINDER, "list = " + list);
-                        Toast.makeText(BookManagerActivity.this, "size = " + list.size(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MBookManagerActivity.this, "size = " + list.size(), Toast.LENGTH_SHORT).show();
                     } catch (RemoteException e) {
                         Log.w(TAGs.TAG_BINDER, Log.getStackTraceString(e));
                     }
@@ -65,14 +65,14 @@ public class BookManagerActivity extends BaseAppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (iBookManager != null) {
+                if (mBookManager != null) {
                     try {
                         temp++;
-                        Book b = new Book(temp, "Book " + temp);
+                        MBook b = new MBook(temp, "MBook " + temp);
 
                         // TODO 实际开发中可能阻塞主线程
-                        iBookManager.addBook(b);
-                        Toast.makeText(BookManagerActivity.this, "Book " + temp + " added.", Toast.LENGTH_SHORT).show();
+                        mBookManager.addBook(b);
+                        Toast.makeText(MBookManagerActivity.this, "MBook " + temp + " added.", Toast.LENGTH_SHORT).show();
                     } catch (RemoteException e) {
                         Log.w(TAGs.TAG_BINDER, Log.getStackTraceString(e));
                     }

@@ -39,6 +39,15 @@
 
         <service android:name=".binder.BookManagerService"
             android:process=":remote"/>
+
+
+        <!--
+            manual binder
+        -->
+        <activity android:name=".manualbinder.MBookManagerActivity" />
+
+        <service android:name=".manualbinder.MBookManagerService"
+            android:process=":m_remote"/>
     </application>
 
 </manifest>
