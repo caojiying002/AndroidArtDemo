@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.androidart.binder.BookManagerActivity;
 import com.example.androidart.singletask.STMainActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +19,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(v.getContext(), STMainActivity.class));
+            }
+        });
+        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), BookManagerActivity.class));
             }
         });
     }

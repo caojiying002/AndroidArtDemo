@@ -1,5 +1,6 @@
 package com.example.androidart;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -13,5 +14,9 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(getClass().getSimpleName());
         }
+    }
+
+    protected Context getContext() {
+        return this;
     }
 }

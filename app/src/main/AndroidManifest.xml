@@ -30,6 +30,15 @@
             android:name=".singletask.ThirdActivity"
             android:launchMode="singleTask"
             android:taskAffinity=":custom_task" />
+
+
+        <!--
+            binder
+        -->
+        <activity android:name=".binder.BookManagerActivity" />
+
+        <service android:name=".binder.BookManagerService"
+            android:process=":remote"/>
     </application>
 
 </manifest>
