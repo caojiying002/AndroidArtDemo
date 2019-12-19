@@ -14,9 +14,10 @@ import androidx.annotation.Nullable;
 
 import com.example.androidart.BaseAppCompatActivity;
 import com.example.androidart.R;
-import com.example.androidart.TAGs;
 
 import java.util.List;
+
+import static com.example.androidart.TAGs.TAG_MANUAL_BINDER;
 
 public class MBookManagerActivity extends BaseAppCompatActivity {
 
@@ -24,14 +25,14 @@ public class MBookManagerActivity extends BaseAppCompatActivity {
     private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            Log.d(TAGs.TAG_BINDER, "onServiceConnected, threadName = " + Thread.currentThread().getName()
+            Log.d(TAG_MANUAL_BINDER, "onServiceConnected, threadName = " + Thread.currentThread().getName()
                     + ", IBinder service = " + service);
             mBookManager = MBookManager.Stub.asInterface(service);
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Log.d(TAGs.TAG_BINDER, "onServiceDisconnected, threadName = " + Thread.currentThread().getName());
+            Log.d(TAG_MANUAL_BINDER, "onServiceDisconnected, threadName = " + Thread.currentThread().getName());
             mBookManager = null;
         }
     };
@@ -51,10 +52,10 @@ public class MBookManagerActivity extends BaseAppCompatActivity {
                     try {
                         // TODO 实际开发中可能阻塞主线程
                         List<MBook> list = mBookManager.getBookList();
-                        Log.d(TAGs.TAG_BINDER, "list = " + list);
+                        Log.d(TAG_MANUAL_BINDER, "list = " + list);
                         Toast.makeText(MBookManagerActivity.this, "size = " + list.size(), Toast.LENGTH_SHORT).show();
                     } catch (RemoteException e) {
-                        Log.w(TAGs.TAG_BINDER, Log.getStackTraceString(e));
+                        Log.w(TAG_MANUAL_BINDER, Log.getStackTraceString(e));
                     }
                 }
             }
@@ -74,7 +75,7 @@ public class MBookManagerActivity extends BaseAppCompatActivity {
                         mBookManager.addBook(b);
                         Toast.makeText(MBookManagerActivity.this, "MBook " + temp + " added.", Toast.LENGTH_SHORT).show();
                     } catch (RemoteException e) {
-                        Log.w(TAGs.TAG_BINDER, Log.getStackTraceString(e));
+                        Log.w(TAG_MANUAL_BINDER, Log.getStackTraceString(e));
                     }
                 }
             }

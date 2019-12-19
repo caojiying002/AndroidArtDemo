@@ -12,10 +12,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.androidart.TAGs;
-
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import static com.example.androidart.TAGs.TAG_BINDER;
 
 /**
  * 运行于子进程, android:process=":remote"
@@ -40,13 +40,13 @@ public class BookManagerService extends Service {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }*/
-                Log.d(TAGs.TAG_BINDER, "BookManagerService: getBookList(), threadName = " + Thread.currentThread().getName());
+                Log.d(TAG_BINDER, "BookManagerService: getBookList(), threadName = " + Thread.currentThread().getName());
                 return mBooks;
             }
 
             @Override
             public void addBook(Book book) throws RemoteException {
-                Log.d(TAGs.TAG_BINDER, "BookManagerService: addBook(), threadName = " + Thread.currentThread().getName());
+                Log.d(TAG_BINDER, "BookManagerService: addBook(), threadName = " + Thread.currentThread().getName());
                 mBooks.add(book);
             }
 
@@ -96,7 +96,7 @@ public class BookManagerService extends Service {
             try {
                 callback.onNewBookArrived(newBook);
             } catch (RemoteException e) {
-                Log.w(TAGs.TAG_BINDER, Log.getStackTraceString(e));
+                Log.w(TAG_BINDER, Log.getStackTraceString(e));
             }
         }
         mCallbackList.finishBroadcast();

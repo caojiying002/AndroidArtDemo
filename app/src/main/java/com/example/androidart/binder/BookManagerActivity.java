@@ -16,9 +16,10 @@ import androidx.annotation.Nullable;
 
 import com.example.androidart.BaseAppCompatActivity;
 import com.example.androidart.R;
-import com.example.androidart.TAGs;
 
 import java.util.List;
+
+import static com.example.androidart.TAGs.TAG_BINDER;
 
 public class BookManagerActivity extends BaseAppCompatActivity {
 
@@ -28,7 +29,7 @@ public class BookManagerActivity extends BaseAppCompatActivity {
         @BinderThread
         @Override
         public void onNewBookArrived(Book newBook) throws RemoteException {
-            Log.d(TAGs.TAG_BINDER, "onNewBookArrived: newBook = " + newBook +
+            Log.d(TAG_BINDER, "onNewBookArrived: newBook = " + newBook +
                     ", threadName = " + Thread.currentThread().getName());
         }
     };
@@ -38,7 +39,7 @@ public class BookManagerActivity extends BaseAppCompatActivity {
         @MainThread
         @Override
         public void onServiceConnected(ComponentName name, final IBinder service) {
-            Log.d(TAGs.TAG_BINDER, "onServiceConnected, threadName = " + Thread.currentThread().getName()
+            Log.d(TAG_BINDER, "onServiceConnected, threadName = " + Thread.currentThread().getName()
                     + ", IBinder service = " + service);
             //linkToDeath(service);
             iBookManager = IBookManager.Stub.asInterface(service);
@@ -48,7 +49,7 @@ public class BookManagerActivity extends BaseAppCompatActivity {
         @MainThread
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Log.d(TAGs.TAG_BINDER, "onServiceDisconnected, threadName = " + Thread.currentThread().getName());
+            Log.d(TAG_BINDER, "onServiceDisconnected, threadName = " + Thread.currentThread().getName());
             iBookManager = null;
         }
     };
@@ -68,10 +69,10 @@ public class BookManagerActivity extends BaseAppCompatActivity {
                     try {
                         // TODO 实际开发中可能阻塞主线程
                         List<Book> list = iBookManager.getBookList();
-                        Log.d(TAGs.TAG_BINDER, "list = " + list);
+                        Log.d(TAG_BINDER, "list = " + list);
                         Toast.makeText(BookManagerActivity.this, "size = " + list.size(), Toast.LENGTH_SHORT).show();
                     } catch (RemoteException e) {
-                        Log.w(TAGs.TAG_BINDER, Log.getStackTraceString(e));
+                        Log.w(TAG_BINDER, Log.getStackTraceString(e));
                     }
                 }
             }
@@ -91,7 +92,7 @@ public class BookManagerActivity extends BaseAppCompatActivity {
                         iBookManager.addBook(b);
                         Toast.makeText(BookManagerActivity.this, "Book " + temp + " added.", Toast.LENGTH_SHORT).show();
                     } catch (RemoteException e) {
-                        Log.w(TAGs.TAG_BINDER, Log.getStackTraceString(e));
+                        Log.w(TAG_BINDER, Log.getStackTraceString(e));
                     }
                 }
             }
@@ -111,7 +112,7 @@ public class BookManagerActivity extends BaseAppCompatActivity {
         try {
             iBookManager.registerCallback(iOnNewBookArrivedCallback);
         } catch (RemoteException e) {
-            Log.w(TAGs.TAG_BINDER, Log.getStackTraceString(e));
+            Log.w(TAG_BINDER, Log.getStackTraceString(e));
         }
     }
 
@@ -121,7 +122,7 @@ public class BookManagerActivity extends BaseAppCompatActivity {
         try {
             iBookManager.unregisterCallback(iOnNewBookArrivedCallback);
         } catch (RemoteException e) {
-            Log.w(TAGs.TAG_BINDER, Log.getStackTraceString(e));
+            Log.w(TAG_BINDER, Log.getStackTraceString(e));
         }
     }
 
@@ -132,7 +133,7 @@ public class BookManagerActivity extends BaseAppCompatActivity {
                 @BinderThread
                 @Override
                 public void binderDied() {
-                    Log.d(TAGs.TAG_BINDER, "binderDied, threadName = " + Thread.currentThread().getName());
+                    Log.d(TAG_BINDER, "binderDied, threadName = " + Thread.currentThread().getName());
                     if (iBookManager == null)
                         return;
                     service.unlinkToDeath(this, 0);
@@ -141,7 +142,7 @@ public class BookManagerActivity extends BaseAppCompatActivity {
                 }
             }, 0);
         } catch (RemoteException e) {
-            Log.w(TAGs.TAG_BINDER, Log.getStackTraceString(e));
+            Log.w(TAG_BINDER, Log.getStackTraceString(e));
         }
     }
 }
