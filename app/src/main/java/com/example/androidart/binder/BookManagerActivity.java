@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.BinderThread;
+import androidx.annotation.MainThread;
 import androidx.annotation.Nullable;
 
 import com.example.androidart.BaseAppCompatActivity;
@@ -21,14 +23,29 @@ import java.util.List;
 public class BookManagerActivity extends BaseAppCompatActivity {
 
     @Nullable private IBookManager iBookManager;
-    private ServiceConnection mServiceConnection = new ServiceConnection() {
+    private IOnNewBookArrivedCallback iOnNewBookArrivedCallback = new IOnNewBookArrivedCallback.Stub() {
+
+        @BinderThread
         @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
+        public void onNewBookArrived(Book newBook) throws RemoteException {
+            Log.d(TAGs.TAG_BINDER, "onNewBookArrived: newBook = " + newBook +
+                    ", threadName = " + Thread.currentThread().getName());
+        }
+    };
+
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
+
+        @MainThread
+        @Override
+        public void onServiceConnected(ComponentName name, final IBinder service) {
             Log.d(TAGs.TAG_BINDER, "onServiceConnected, threadName = " + Thread.currentThread().getName()
                     + ", IBinder service = " + service);
+            //linkToDeath(service);
             iBookManager = IBookManager.Stub.asInterface(service);
+            registerRemoteCallback();
         }
 
+        @MainThread
         @Override
         public void onServiceDisconnected(ComponentName name) {
             Log.d(TAGs.TAG_BINDER, "onServiceDisconnected, threadName = " + Thread.currentThread().getName());
@@ -83,7 +100,48 @@ public class BookManagerActivity extends BaseAppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        unregisterRemoteCallback();
         unbindService(mServiceConnection);
         super.onDestroy();
+    }
+
+    private void registerRemoteCallback() {
+        if (iBookManager == null)
+            return;
+        try {
+            iBookManager.registerCallback(iOnNewBookArrivedCallback);
+        } catch (RemoteException e) {
+            Log.w(TAGs.TAG_BINDER, Log.getStackTraceString(e));
+        }
+    }
+
+    private void unregisterRemoteCallback() {
+        if (iBookManager == null)
+            return;
+        try {
+            iBookManager.unregisterCallback(iOnNewBookArrivedCallback);
+        } catch (RemoteException e) {
+            Log.w(TAGs.TAG_BINDER, Log.getStackTraceString(e));
+        }
+    }
+
+    private void linkToDeath(final IBinder service) {
+        try {
+            service.linkToDeath(new IBinder.DeathRecipient() {
+
+                @BinderThread
+                @Override
+                public void binderDied() {
+                    Log.d(TAGs.TAG_BINDER, "binderDied, threadName = " + Thread.currentThread().getName());
+                    if (iBookManager == null)
+                        return;
+                    service.unlinkToDeath(this, 0);
+                    iBookManager = null;
+
+                }
+            }, 0);
+        } catch (RemoteException e) {
+            Log.w(TAGs.TAG_BINDER, Log.getStackTraceString(e));
+        }
     }
 }
