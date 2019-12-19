@@ -48,6 +48,15 @@
 
         <service android:name=".manualbinder.MBookManagerService"
             android:process=":m_remote"/>
+
+
+        <!--
+            messenger
+        -->
+        <activity android:name=".messenger.MessengerActivity" />
+
+        <service android:name=".messenger.MessengerService"
+            android:process=":messenger" />
     </application>
 
 </manifest>
