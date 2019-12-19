@@ -86,17 +86,19 @@ public class BookManagerService extends Service {
     @Override
     public void onDestroy() {
         mHandler.removeCallbacksAndMessages(null);
+        mCallbackList.kill();
         super.onDestroy();
     }
 
     private void notifyCallbacks(Book newBook) {
-        int N = mCallbackList.beginBroadcast();
-        for (int i = 0; i < N; i++) {
-            IOnNewBookArrivedCallback callback = mCallbackList.getBroadcastItem(i);
+        int i = mCallbackList.beginBroadcast();
+        while (i > 0) {
+            i--;
             try {
-                callback.onNewBookArrived(newBook);
+                mCallbackList.getBroadcastItem(i).onNewBookArrived(newBook);
             } catch (RemoteException e) {
-                Log.w(TAG_BINDER, Log.getStackTraceString(e));
+                // The RemoteCallbackList will take care of removing
+                // the dead object for us.
             }
         }
         mCallbackList.finishBroadcast();
