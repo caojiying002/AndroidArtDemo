@@ -57,6 +57,16 @@
 
         <service android:name=".messenger.MessengerService"
             android:process=":messenger" />
+
+
+        <!--
+            provider
+        -->
+        <activity android:name=".provider.ProviderActivity" />
+
+        <provider android:name=".provider.BookProvider"
+            android:authorities="com.example.androidart.bookprovider"
+            android:process=":provider" />
     </application>
 
 </manifest>
