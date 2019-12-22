@@ -9,4 +9,6 @@ public class TAGs {
     public static final String TAG_MESSENGER = "TAG_MESSENGER";
 
     public static final String TAG_PROVIDER = "TAG_PROVIDER";
+
+    public static final String TAG_SOCKET = "TAG_SOCKET";
 }
