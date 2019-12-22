@@ -79,6 +79,15 @@
 
         <service android:name=".socket.TCPServerService"
             android:process=":socket" />
+
+
+        <!--
+            binder pool
+        -->
+        <activity android:name=".bindermanager.BinderManagerActivity" />
+
+        <service android:name=".bindermanager.BinderManagerService"
+            android:process=":binder_manager" />
     </application>
 
 </manifest>
