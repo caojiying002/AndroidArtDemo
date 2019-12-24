@@ -13,4 +13,6 @@ public class TAGs {
     public static final String TAG_SOCKET = "TAG_SOCKET";
 
     public static final String TAG_BINDER_MANAGER = "TAG_BINDER_MANAGER";
+
+    public static final String TAG_VIEW_MOVEMENT = "TAG_VIEW_MOVEMENT";
 }

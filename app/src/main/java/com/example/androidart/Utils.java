@@ -1,5 +1,12 @@
 package com.example.androidart;
 
+import android.content.Context;
+import android.util.DisplayMetrics;
+
+import androidx.annotation.NonNull;
+
+import com.example.androidart.intercept.InterceptActivity1;
+
 import java.io.Closeable;
 import java.io.IOException;
 
@@ -15,5 +22,9 @@ public class Utils {
                 }
             }
         }
+    }
+
+    public static DisplayMetrics getScreenMetrics(@NonNull Context context) {
+        return context.getResources().getDisplayMetrics();
     }
 }

@@ -22,53 +22,79 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="binder"
         app:layout_constraintLeft_toLeftOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        android:text="binder" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="manual binder"
         app:layout_constraintLeft_toLeftOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
-        android:text="manual binder" />
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="messenger"
         app:layout_constraintLeft_toLeftOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        android:text="messenger" />
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="provider"
         app:layout_constraintLeft_toLeftOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        android:text="provider" />
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="socket"
         app:layout_constraintLeft_toLeftOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
-        android:text="socket" />
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="binder manager"
         app:layout_constraintLeft_toLeftOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
-        android:text="binder manager" />
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="view movement"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="intercept 1"
+        app:layout_constraintEnd_toEndOf="@+id/button7"
+        app:layout_constraintTop_toTopOf="@+id/button1" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="intercept 2"
+        app:layout_constraintEnd_toEndOf="@+id/button8"
+        app:layout_constraintTop_toTopOf="@+id/button2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

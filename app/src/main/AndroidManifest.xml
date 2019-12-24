@@ -88,6 +88,19 @@
 
         <service android:name=".bindermanager.BinderManagerService"
             android:process=":binder_manager" />
+
+
+        <!--
+            view movement
+        -->
+        <activity android:name=".view.ViewMovementActivity" />
+
+
+        <!--
+            touch interception
+        -->
+        <activity android:name=".intercept.InterceptActivity1" />
+        <activity android:name=".intercept.InterceptActivity2" />
     </application>
 
 </manifest>

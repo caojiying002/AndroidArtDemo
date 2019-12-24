@@ -6,11 +6,14 @@ import android.view.View;
 
 import com.example.androidart.binder.BookManagerActivity;
 import com.example.androidart.bindermanager.BinderManagerActivity;
+import com.example.androidart.intercept.InterceptActivity1;
+import com.example.androidart.intercept.InterceptActivity2;
 import com.example.androidart.manualbinder.MBookManagerActivity;
 import com.example.androidart.messenger.MessengerActivity;
 import com.example.androidart.provider.ProviderActivity;
 import com.example.androidart.singletask.STMainActivity;
 import com.example.androidart.socket.TCPClientActivity;
+import com.example.androidart.view.ViewMovementActivity;
 
 public class MainActivity extends BaseAppCompatActivity {
 
@@ -58,6 +61,24 @@ public class MainActivity extends BaseAppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(v.getContext(), BinderManagerActivity.class));
+            }
+        });
+        findViewById(R.id.button7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), ViewMovementActivity.class));
+            }
+        });
+        findViewById(R.id.button8).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), InterceptActivity1.class));
+            }
+        });
+        findViewById(R.id.button9).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), InterceptActivity2.class));
             }
         });
     }
