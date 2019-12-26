@@ -13,6 +13,7 @@ import com.example.androidart.messenger.MessengerActivity;
 import com.example.androidart.provider.ProviderActivity;
 import com.example.androidart.singletask.STMainActivity;
 import com.example.androidart.socket.TCPClientActivity;
+import com.example.androidart.view.CircleViewActivity;
 import com.example.androidart.view.ViewMovementActivity;
 
 public class MainActivity extends BaseAppCompatActivity {
@@ -79,6 +80,12 @@ public class MainActivity extends BaseAppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(v.getContext(), InterceptActivity2.class));
+            }
+        });
+        findViewById(R.id.button10).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), CircleViewActivity.class));
             }
         });
     }

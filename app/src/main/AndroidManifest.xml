@@ -101,6 +101,12 @@
         -->
         <activity android:name=".intercept.InterceptActivity1" />
         <activity android:name=".intercept.InterceptActivity2" />
+
+
+        <!--
+            circle view
+        -->
+        <activity android:name=".view.CircleViewActivity" />
     </application>
 
 </manifest>
