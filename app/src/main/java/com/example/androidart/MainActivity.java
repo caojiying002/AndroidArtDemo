@@ -10,6 +10,7 @@ import com.example.androidart.intercept.InterceptActivity1;
 import com.example.androidart.intercept.InterceptActivity2;
 import com.example.androidart.manualbinder.MBookManagerActivity;
 import com.example.androidart.messenger.MessengerActivity;
+import com.example.androidart.notification.NotificationActivity;
 import com.example.androidart.provider.ProviderActivity;
 import com.example.androidart.singletask.STMainActivity;
 import com.example.androidart.socket.TCPClientActivity;
@@ -86,6 +87,12 @@ public class MainActivity extends BaseAppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(v.getContext(), CircleViewActivity.class));
+            }
+        });
+        findViewById(R.id.button11).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), NotificationActivity.class));
             }
         });
     }

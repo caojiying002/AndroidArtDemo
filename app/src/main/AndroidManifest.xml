@@ -107,6 +107,12 @@
             circle view
         -->
         <activity android:name=".view.CircleViewActivity" />
+
+
+        <!--
+            notification
+        -->
+        <activity android:name=".notification.NotificationActivity" />
     </application>
 
 </manifest>
